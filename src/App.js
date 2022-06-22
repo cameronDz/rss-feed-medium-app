@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import CategorySelector from "./components/CategorySelector/CategorySelector";
 import EntryList from "./components/EntryList/EntryList";
-import { fetchFeed } from "./lib";
+import { fetchCategoryFeeds } from "./lib";
+import feeds from "./assets/feeds";
 import './App.css';
 
+const categoryList = Object.keys(feeds);
 const App = () => {
   const [categories, setCategories] = useState([]);
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-    // TODO generate category list from static data
-    setCategories([]);
-    fetchFeed();
+    setCategories(categoryList);
   }, []);
 
-  const handleSelect = (_selectedCategory) => {
-    // TODO pull ress feed entries based on selectedCategory
-    setEntries([]);
+  const handleSelect = (selectedCategory) => {
+    fetchCategoryFeeds(selectedCategory, setEntries);
   }
   return (
     <div className="App">
