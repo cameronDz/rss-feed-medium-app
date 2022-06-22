@@ -15,6 +15,7 @@ const App = () => {
   }, []);
 
   const handleSelect = (selectedCategory) => {
+    setEntries([]);
     fetchCategoryFeeds(selectedCategory, handleEntriesMerge);
   }
 
