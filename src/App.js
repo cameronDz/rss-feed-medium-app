@@ -15,8 +15,19 @@ const App = () => {
   }, []);
 
   const handleSelect = (selectedCategory) => {
-    fetchCategoryFeeds(selectedCategory, setEntries);
+    fetchCategoryFeeds(selectedCategory, handleEntriesMerge);
   }
+
+  const handleEntriesMerge = (data) => {
+    setEntries((prev) => {
+      return prev.concat(data).sort((a, b) => {
+        const dateA = new Date(a.publishDate);
+        const dateB = new Date(b.publishDate);
+        return dateA > dateB ? -1 : 1;
+      });
+    });
+  };
+
   return (
     <div className="App">
       <header>

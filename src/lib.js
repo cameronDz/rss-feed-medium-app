@@ -4,7 +4,10 @@ import feeds from "./assets/feeds";
 const corsProxy = "https://cors.eu.org/";
 
 const fetchCategoryFeeds = (category, callback) => {
-  fetchFeed(feeds[category][0], callback);
+  const { length } = feeds[category];
+  for (let idx = 0; idx < length; idx++) {
+    fetchFeed(feeds[category][idx], callback);
+  }
 };
 
 const fetchFeed = (url, callback) => {
